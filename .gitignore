@@ -1,0 +1,4 @@
+renfy_bot.log
+bot_token.py
+*.pyc
+__pycache__/
