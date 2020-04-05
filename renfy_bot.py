@@ -22,7 +22,7 @@ def get_timetable(update, context):
     # Check arguments.
     args = context.args
     if args is None or len(args) < 2:
-        update.message.reply_text(utils.PREFIX_ERROR + "Incorrect usage! <b>Correct usage:</b> <i>/time <origin> <target></i>.", parse_mode=telegram.ParseMode.HTML)
+        update.message.reply_text(utils.PREFIX_ERROR + "Incorrect usage! <b>Correct usage:</b> <i>/time [origin] [target]</i>.", parse_mode=telegram.ParseMode.HTML)
         return
 
     # Check if there are registered stations.
