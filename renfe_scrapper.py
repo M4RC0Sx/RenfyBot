@@ -37,9 +37,9 @@ def get_renfe_data(origin, target, date=datetime.datetime.now(), hour=datetime.d
             return {} 
 
         # Only get next trains.
-        for i in range(0, len(renfe_data)):
-            if datetime.datetime.strptime(renfe_data[i]['horaSalida'], '%H:%M').time() < datetime.datetime.strptime(hour__min_str, '%H:%M').time():
-                del(renfe_data[i])
+        for i in renfe_data:
+            if datetime.datetime.strptime(i['horaSalida'], '%H:%M').time() < datetime.datetime.strptime(hour__min_str, '%H:%M').time():
+                renfe_data.remove(i)
     except Exception:
         # Empty dictionary on exception.
         renfe_data = {}
