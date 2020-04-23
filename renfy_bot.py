@@ -73,22 +73,12 @@ def get_stations(update, context):
 def command_help(update, context):
 
     update.message.reply_text(utils.PREFIX_INFO + "<b>/help</b> - General bot information and commands.", parse_mode=telegram.ParseMode.HTML)
-    update.message.reply_text(utils.PREFIX_INFO + "<b>/credits</b> - Bot author credits.", parse_mode=telegram.ParseMode.HTML)
     update.message.reply_text(utils.PREFIX_INFO + "<b>/stations</b> - List of available stations.", parse_mode=telegram.ParseMode.HTML)
     update.message.reply_text(utils.PREFIX_INFO + "<b>/time</b> - Check next trains between given origin and target as arguments.", parse_mode=telegram.ParseMode.HTML)
 
     logger.info("Function command_help has been executed. [ChatID: {} - User: {}]".format(update.message.chat_id, update.message.from_user.username))
 
-
-def command_credits(update, context):
-
-    update.message.reply_text("<b>RenfyBot - Developed by: M4RC0Sx</b>", parse_mode=telegram.ParseMode.HTML)
-    update.message.reply_text("Thank you for using it! Remember to <i>follow me on GitHub</i>:", parse_mode=telegram.ParseMode.HTML)
-    update.message.reply_text('<b><a href="https://github.com/M4RC0Sx">My Awesome GitHub</a></b>', parse_mode=telegram.ParseMode.HTML)
-
-    logger.info("Function command_credits has been executed. [ChatID: {} - User: {}]".format(update.message.chat_id, update.message.from_user.username))
-
-
+    
 def main():
 
     # Declare bot updater and command dispatcher.
@@ -97,7 +87,6 @@ def main():
     dp.add_handler(CommandHandler('stations', get_stations))
     dp.add_handler(CommandHandler('time', get_timetable))
     dp.add_handler(CommandHandler('help', command_help))
-    dp.add_handler(CommandHandler('credits', command_credits))
 
     # Load stations from JSON file.
     global station_data
