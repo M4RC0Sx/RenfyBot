@@ -42,7 +42,10 @@ def get_timetable(update, context):
     if len(renfe_data) > 0:
         update.message.reply_text(utils.PREFIX_INFO + "Next trains from <i>{}</i> to <i>{}</i>:".format(args[0], args[1]), parse_mode=telegram.ParseMode.HTML)
         for i in renfe_data:
-            update.message.reply_text("<b>Line:</b> {}\n<b>Departure Time:</b> {}\n<b>Arrival Time:</b> {}\n<b>Duration:</b> {}".format(i['linea'], i['horaSalida'], i['horaLlegada'], i['duracion']), parse_mode=telegram.ParseMode.HTML)
+            if i['accesible']:
+                update.message.reply_text("<b>🚂 Line:</b> {}\n<b>🕒 Departure Time:</b> {}\n<b>🕥 Arrival Time:</b> {}\n<b>⏳ Duration:</b> {}\n<b>👨‍🦽 Accessible: ✅</b> ".format(i['linea'], i['horaSalida'], i['horaLlegada'], i['duracion']), parse_mode=telegram.ParseMode.HTML)
+            else:
+                update.message.reply_text("<b>🚂 Line:</b> {}\n<b>🕒 Departure Time:</b> {}\n<b>🕥 Arrival Time:</b> {}\n<b>⏳ Duration:</b> {}\n<b>👨‍🦽 Accessible: ❌</b> ".format(i['linea'], i['horaSalida'], i['horaLlegada'], i['duracion']), parse_mode=telegram.ParseMode.HTML)
     else:
         update.message.reply_text(utils.PREFIX_INFO + "There are no next trains available from <i>{}</i> to <i>{}</i>. Sorry.".format(args[0], args[1]), parse_mode=telegram.ParseMode.HTML)
         update.message.reply_text(utils.PREFIX_INFO + "Maybe it is a temporary error getting data from RENFE.".format(args[0], args[1]), parse_mode=telegram.ParseMode.HTML)
